@@ -50,6 +50,7 @@ fi
 
 echo ""
 echo "Masukkan config json ke file /root/akun/jsondnstt.json"
+read -p "Jika sudah silahkan next"
 echo ""
 
 echo "$pubkey" > /root/akun/server.pub
