@@ -3,7 +3,7 @@
 stop () {
 host=$(cat /root/akun/jsondnstt.json | grep "Host" | tr '"' ' ' | awk '{print $3}')
 route="$(cat /root/akun/ipmodem.txt | grep -i ipmodem | cut -d= -f2 | tail -n1)" 
-killall -q badvpn-tun2socks dns-client fping
+killall -q badvpn-tun2socks dns-client fping xray
 route del 1.1.1.1 gw "$route" metric 0 2>/dev/null
 route del "$host" gw "$route" metric 0 2>/dev/null
 ip link delete tun1 2>/dev/null
