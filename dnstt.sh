@@ -77,7 +77,7 @@ echo "ipmodem=$ipmodem" > /root/akun/ipmodem.txt
 host=$(cat /root/akun/jsondnstt.json | grep "Host" | tr '"' ' ' | awk '{print $3}')
 ns="$(cat /root/akun/dnstt.txt | tr '\n' ' '  | awk '{print $1}')" 
 route="$(cat /root/akun/ipmodem.txt | grep -i ipmodem | cut -d= -f2 | tail -n1)"
-nohup dns-client -udp 8.8.8.8:53 -pubkey-file /root/akun/server.pub $ns 127.0.0.1:2222 > /dev/null 2>&1 &
+nohup dns-client -udp 1.1.1.1:53 -pubkey-file /root/akun/server.pub $ns 127.0.0.1:2222 > /dev/null 2>&1 &
 sleep 3
 xray run -c /root/akun/jsondnstt.json &
 sleep 5
