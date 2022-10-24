@@ -33,20 +33,7 @@ echo "Masukkan pubkey"
 read -p "default pubkey: $pubkey2 : " pubkey
 [ -z "${pubkey}" ] && pubkey="$pubkey2"
 
-read -p "ingin menggunakan port udpgw y/n " pilih
-if [ "$pilih" = "y" ]; then
-echo "Masukkan port udpgw" 
-read -p "default udpgw: $udp2 : " udp
-[ -z "${udp}" ] && udp="$udp2"
-badvpn="badvpn-tun2socks --tundev tun1 --netif-ipaddr 10.0.0.2 --netif-netmask 255.255.255.0 --socks-server-addr 127.0.0.1:10808 --udpgw-remote-server-addr 127.0.0.1:$udp --udpgw-connection-buffer-size 65535 --udpgw-transparent-dns &"
-elif [ "$pilih" = "Y" ]; then
-echo "Masukkan port udpgw" 
-read -p "default udpgw: $udp2 : " udp
-[ -z "${udp}" ] && udp="$udp2"
-badvpn="badvpn-tun2socks --tundev tun1 --netif-ipaddr 10.0.0.2 --netif-netmask 255.255.255.0 --socks-server-addr 127.0.0.1:10808 --udpgw-remote-server-addr 127.0.0.1:$udp --udpgw-connection-buffer-size 65535 --udpgw-transparent-dns &"
-else
-badvpn='tun2socks -tunAddr "10.0.0.1" -tunGw  "10.0.0.2" -tunMask "255.255.255.0" -tunName "tun1" -tunDns "8.8.8.8,8.8.4.4" -proxyType "socks" -proxyServer "127.0.0.1:10808" &'
-fi
+badvpn='tun2socks -tunAddr "10.0.0.1" -tunGw  "10.0.0.2" -tunMask "255.255.255.0" -tunName "tun1" -tunDns "1.1.1.1,1.0.0.1" -proxyType "socks" -proxyServer "127.0.0.1:10808" &'
 
 echo ""
 echo "Masukkan config json ke file /root/akun/jsondnstt.json"
