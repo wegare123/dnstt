@@ -5,6 +5,7 @@ host=$(cat /root/akun/jsondnstt.json | grep "Host" | tr '"' ' ' | awk '{print $3
 route="$(cat /root/akun/ipmodem.txt | grep -i ipmodem | cut -d= -f2 | tail -n1)" 
 killall -q badvpn-tun2socks dns-client fping xray
 route del 8.8.8.8 gw "$route" metric 0 2>/dev/null
+route del 8.8.4.4 gw "$route" metric 0 2>/dev/null
 route del "$host" gw "$route" metric 0 2>/dev/null
 ip link delete tun1 2>/dev/null
 /etc/init.d/dnsmasq restart 2>/dev/null
@@ -86,6 +87,7 @@ ip tuntap add dev tun1 mode tun
 ifconfig tun1 10.0.0.1 netmask 255.255.255.0
 /usr/bin/gproxy-dnstt
 route add 8.8.8.8 gw "$route" metric 0
+route add 8.8.4.4 gw "$route" metric 0
 route add "$host" gw "$route" metric 0
 route add default gw 10.0.0.2 metric 0
     
