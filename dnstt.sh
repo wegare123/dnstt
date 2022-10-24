@@ -9,7 +9,7 @@ route del "$host" gw "$route" metric 0 2>/dev/null
 ip link delete tun1 2>/dev/null
 /etc/init.d/dnsmasq restart 2>/dev/null
 }
-mkdir -p /root/akun/jsondnstt.json
+touch /root/akun/jsondnstt.json
 ns2="$(cat /root/akun/dnstt.txt | tr '\n' ' '  | awk '{print $1}')" 
 udp2="$(cat /root/akun/dnstt.txt | tr '\n' ' '  | awk '{print $2}')"
 pubkey2="$(cat /root/akun/server.pub)" 
