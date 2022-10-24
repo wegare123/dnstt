@@ -50,6 +50,9 @@ wget --no-check-certificate "https://github.com/wegare123/backup/blob/main/tun2s
 chmod +x /usr/bin/dnstt
 chmod +x /usr/bin/dns-client
 chmod +x /usr/bin/autorekonek-dnstt
+chmod +x /usr/bin/xray
+chmod +x /usr/share/xray/geoip.dat
+chmod +x /usr/share/xray/geosite.dat
 opkg install ip-full && opkg install --force-depends *.ipk && opkg install lsof && opkg install fping screen python python3 coreutils-nohup
 rm -r ~/*.ipk
 rm -r ~/install.sh
