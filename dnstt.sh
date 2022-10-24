@@ -4,7 +4,7 @@ stop () {
 host=$(cat /root/akun/jsondnstt.json | grep "Host" | tr '"' ' ' | awk '{print $3}')
 route="$(cat /root/akun/ipmodem.txt | grep -i ipmodem | cut -d= -f2 | tail -n1)" 
 killall -q badvpn-tun2socks dns-client fping xray
-route del 1.1.1.1 gw "$route" metric 0 2>/dev/null
+route del 8.8.8.8 gw "$route" metric 0 2>/dev/null
 route del "$host" gw "$route" metric 0 2>/dev/null
 ip link delete tun1 2>/dev/null
 /etc/init.d/dnsmasq restart 2>/dev/null
@@ -33,7 +33,7 @@ echo "Masukkan pubkey"
 read -p "default pubkey: $pubkey2 : " pubkey
 [ -z "${pubkey}" ] && pubkey="$pubkey2"
 
-badvpn='tun2socks -tunAddr "10.0.0.1" -tunGw  "10.0.0.2" -tunMask "255.255.255.0" -tunName "tun1" -tunDns "1.1.1.1,1.0.0.1" -proxyType "socks" -proxyServer "127.0.0.1:10808" &'
+badvpn='tun2socks -tunAddr "10.0.0.1" -tunGw  "10.0.0.2" -tunMask "255.255.255.0" -tunName "tun1" -tunDns "8.8.8.8,8.8.4.4" -proxyType "socks" -proxyServer "127.0.0.1:10808" &'
 
 echo ""
 echo "Masukkan config json ke file /root/akun/jsondnstt.json"
@@ -63,7 +63,7 @@ echo "ipmodem=$ipmodem" > /root/akun/ipmodem.txt
 host=$(cat /root/akun/jsondnstt.json | grep "Host" | tr '"' ' ' | awk '{print $3}')
 ns="$(cat /root/akun/dnstt.txt | tr '\n' ' '  | awk '{print $1}')" 
 route="$(cat /root/akun/ipmodem.txt | grep -i ipmodem | cut -d= -f2 | tail -n1)"
-nohup dns-client -udp 1.1.1.1:53 -pubkey-file /root/akun/server.pub $ns 127.0.0.1:2222 > /dev/null 2>&1 &
+nohup dns-client -udp 8.8.8.8:53 -pubkey-file /root/akun/server.pub $ns 127.0.0.1:2222 > /dev/null 2>&1 &
 sleep 3
 xray run -c /root/akun/jsondnstt.json &
 sleep 5
@@ -72,10 +72,11 @@ echo "is connecting to the internet"
 ip tuntap add dev tun1 mode tun
 ifconfig tun1 10.0.0.1 netmask 255.255.255.0
 /usr/bin/gproxy-dnstt
-route add 1.1.1.1 gw "$route" metric 0
 route add "$host" gw "$route" metric 0
 route add default gw 10.0.0.2 metric 0
-    
+sleep 1
+route add 8.8.8.8 gw "$route" metric 0
+
 echo "#!/bin/bash
 #stl (Wegare)
 host=$(cat /root/akun/dnstt.txt | tr '\n' ' '  | awk '{print $1}')
