@@ -3,7 +3,7 @@
 stop () {
 host=$(cat /root/akun/jsondnstt.json | grep "Host" | tr '"' ' ' | awk '{print $3}')
 route="$(cat /root/akun/ipmodem.txt | grep -i ipmodem | cut -d= -f2 | tail -n1)" 
-killall -q badvpn-tun2socks dns-client fping xray
+killall -q badvpn-tun2socks dns-client httping xray
 route del 8.8.8.8 gw "$route" metric 0 2>/dev/null
 route del "$host" gw "$route" metric 0 2>/dev/null
 ip link delete tun1 2>/dev/null
@@ -77,10 +77,10 @@ route add default gw 10.0.0.2 metric 0
 sleep 1
 route add 8.8.8.8 gw "$route" metric 0
 
-echo "#!/bin/bash
-#stl (Wegare)
-host=$(cat /root/akun/dnstt.txt | tr '\n' ' '  | awk '{print $1}')
-fping -l $host" > /usr/bin/ping-dnstt
+echo '
+#!/bin/bash
+#dnstt (Wegare)
+httping m.google.com' > /usr/bin/ping-dnstt
 chmod +x /usr/bin/ping-dnstt
 /usr/bin/ping-dnstt > /dev/null 2>&1 &
 elif [ "${tools}" = "3" ]; then

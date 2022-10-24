@@ -1,7 +1,7 @@
 #!/bin/bash
 #dnstt (Wegare)
 printf 'ctrl+c' | crontab -e > /dev/null
-opkg update && opkg install unzip
+opkg update
 cek2=$(opkg list-installed | grep dnsmasq-full | awk '{print $1}')
 if [ $cek2 = "dnsmasq-full" ]; then
 echo > /dev/null
@@ -22,7 +22,7 @@ chmod +x /usr/bin/autorekonek-dnstt
 chmod +x /usr/bin/xray
 chmod +x /usr/share/xray/geoip.dat
 chmod +x /usr/share/xray/geosite.dat
-opkg install ip-full && opkg install --force-depends *.ipk && opkg install lsof && opkg install fping screen python python3 coreutils-nohup
+opkg install httping coreutils-nohup ip-full 
 rm -r ~/*.ipk
 rm -r ~/install.sh
 mkdir -p ~/akun/
