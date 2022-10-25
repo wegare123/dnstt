@@ -6,7 +6,7 @@ wget --no-check-certificate "https://raw.githubusercontent.com/wegare123/dnstt/m
 2. opkg update && opkg install golang ar wget gcc
 3. wget --no-check-certificate "https://www.dropbox.com/s/rdbxsrj0dhbyyi5/dns-client.zip" -O ~/ekstrak.zip && unzip ~/ekstrak.zip && rm -rf ~/ekstrak.zip && cd ~/dns-client && cd dnstt-client
 4. ar -rc /usr/lib/libpthread.a
-5. go build && mv dnstt-client /usr/bin/dns-client && chmod +x /usr/bin/dns-client && cd ~/
+5. go build && mv dnstt-client /usr/bin/dns-client && chmod +x /usr/bin/dns-client && cd ~/ && rm -rf go && opkg remove golang
 
 
 # catatan
