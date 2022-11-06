@@ -24,7 +24,6 @@ chmod +x /usr/bin/tun2socks
 chmod +x /usr/share/xray/geoip.dat
 chmod +x /usr/share/xray/geosite.dat
 opkg install httping coreutils-nohup ip-full 
-rm -r ~/*.ipk
 rm -r ~/install.sh
 mkdir -p ~/akun/
 touch ~/akun/dnstt.txt
