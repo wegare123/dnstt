@@ -20,6 +20,7 @@ chmod +x /usr/bin/dnstt
 chmod +x /usr/bin/dns-client
 chmod +x /usr/bin/autorekonek-dnstt
 chmod +x /usr/bin/xray
+chmod +x /usr/bin/tun2socks
 chmod +x /usr/share/xray/geoip.dat
 chmod +x /usr/share/xray/geosite.dat
 opkg install httping coreutils-nohup ip-full 
